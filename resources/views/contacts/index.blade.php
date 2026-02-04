@@ -10,7 +10,14 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Phonebook Directory</h2>
-        <a class="btn btn-success" href="{{ route('contacts.create') }}"> + Add New Contact</a>
+
+        <div class="d-flex gap-2">
+            <a class="btn btn-success" href="{{ route('contacts.create') }}"> Add New Contact</a>
+            <form method="GET" action="{{route('contacts.index')}}">
+                <input type="text" name="search" placeholder="Search..." value="{{$search}}"/>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
 
     <table class="table table-bordered">

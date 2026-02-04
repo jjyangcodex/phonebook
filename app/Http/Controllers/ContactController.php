@@ -10,11 +10,18 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::latest()->get();  
+        $search = $request->query('search');
 
-        return view('contacts.index',compact('contacts'));
+        $contacts = Contact::when($search, function ($query, $search) {
+            $query->where('first_name', 'like', "%{$search}%")
+                  ->orWhere('last_name', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->get();
+
+        return view('contacts.index', compact('contacts','search'));
     }
 
     /**
