@@ -1,25 +1,26 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Phonebook Directory</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="container mt-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Phonebook Directory</h2>
+@extends('layout.header')
+@section('content')
+    <div class="container mt-5 bg-light p-4 rounded">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Contact List</h2>
 
-                <div class="d-flex gap-2">
-                    <a class="btn btn-success" href="{{ route('contacts.create') }}">Add New Contact</a>
-                    <form method="GET" action="{{ route('contacts.index') }}">
-                        <input type="text" name="search" placeholder="Search..." value="{{ $search }}" />
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
+            <div class="d-flex gap-2">
+                <a class="btn btn-success" href="{{ route('contacts.create') }}">Add New Contact</a>
             </div>
-
+        </div>
+        <div class="mb-3">
+            <form action="{{ route('contacts.index') }}" method="GET" class="d-flex">
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control me-2"
+                    placeholder="Search by First or Last Name"
+                    value="{{ request('search') }}"
+                />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+        <div class="mb-3">
             <table class="table table-bordered">
                 <thead class="table-light">
                     <tr>
@@ -63,6 +64,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+                {{ $contacts->links() }}
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection

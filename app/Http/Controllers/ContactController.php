@@ -19,7 +19,7 @@ class ContactController extends Controller
                   ->orWhere('last_name', 'like', "%{$search}%");
         })
         ->latest()
-        ->get();
+        ->paginate(5);
 
         return view('contacts.index', compact('contacts','search'));
     }

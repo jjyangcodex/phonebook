@@ -1,19 +1,18 @@
-<header>
-    <nav style="background:#f8fafc;padding:0.75rem 1rem;border-bottom:1px solid #e5e7eb;">
-        <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-            <div>
-                <a href="{{ url('/contacts') }}" style="font-weight:600;color:#111827;text-decoration:none;font-size:1.1rem;">Phonebook</a>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Phone Directory App</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">📞 Phone Directory</a>
             </div>
+        </nav>
 
-            <div style="display:flex;align-items:center;gap:0.75rem;">
-                <a href="{{ route('contacts.index') }}" style="color:#374151;text-decoration:none;">Contacts</a>
-                <a href="{{ route('contacts.create') }}" style="color:#374151;text-decoration:none;">Add Contact</a>
-
-                <form action="{{ route('contacts.index') }}" method="GET" style="display:flex;align-items:center;gap:0.5rem;margin-left:0.5rem;">
-                    <input name="search" type="search" value="{{ request('search') }}" placeholder="Search by name" style="padding:0.45rem 0.6rem;border:1px solid #d1d5db;border-radius:6px;">
-                    <button type="submit" style="padding:0.45rem 0.6rem;background:#2563eb;color:white;border:none;border-radius:6px;">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+        @yield('content')
+    </body>
+</html>
